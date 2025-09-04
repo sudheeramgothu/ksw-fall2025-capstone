@@ -1,0 +1,12 @@
+flowchart LR
+  A[Developers<br/>GitHub] -->|Push PR| B[Jenkins CI]
+  B -->|Build & Unit Tests| C[Docker Image]
+  C -->|Push| D[(Container Registry)]
+  D --> E[Kubernetes Cluster]
+  subgraph GitOps
+    F[ArgoCD/Flux]
+  end
+  F -->|Sync Manifests| E
+  A -.->|Update Manifests| F
+  E --> G[Prometheus Metrics]
+  G --> H[Grafana Dashboards]
