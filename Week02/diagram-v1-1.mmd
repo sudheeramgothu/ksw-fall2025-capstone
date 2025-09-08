@@ -1,0 +1,22 @@
+flowchart LR
+  subgraph SCM[GitHub Organization]
+    A[flask-app repo]:::repo
+    B[infra repo]:::repo
+    C[ops repo]:::repo
+  end
+  classDef repo fill:#eef,stroke:#88f
+
+  A -->|PR -> dev/main| D[Jenkins CI]
+  D -->|Install deps + Tests| E[Docker Image]
+  E --> F[(Registry)]
+  F --> G[Kubernetes Cluster]
+  subgraph GitOps
+    H[ArgoCD/Flux]
+  end
+  H -->|Sync Manifests| G
+  B --> H
+  G --> I[Prometheus]
+  I --> J[Grafana]
+
+  %% Branch protections callout
+  X{{"main branch\nprotected"}} -.-> A
