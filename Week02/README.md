@@ -37,17 +37,18 @@
 - ✅ Updated architecture diagram saved as `Week02/diagram-v1-1.png`.
 
 ---
-
 ## 📂 Suggested Structure for Week 2
+
+```text
 Week02/
-├── README.md # Week 2 instructions
-├── app-repo-setup.md # Links, decisions, screenshots
-├── diagram-v1-1.png # Updated CI/CD diagram (exported)
-├── diagram-v1-1.mmd # (optional) Mermaid source for edits
-├── app/ # Flask sample application
-│ ├── app.py # Minimal Flask app
-│ ├── test_app.py # Pytest unit test
-│ ├── requirements.txt # Flask, Gunicorn, Pytest
-│ └── Dockerfile # Flask container image definition
+├── README.md                # Week 2 instructions
+├── app-repo-setup.md        # Links, decisions, screenshots
+├── diagram-v1-1.png         # Updated CI/CD diagram (exported)
+├── diagram-v1-1.mmd         # (optional) Mermaid source for edits
+├── app/                     # Flask sample application
+│   ├── app.py               # Minimal Flask app
+│   ├── test_app.py          # Pytest unit test
+│   ├── requirements.txt     # Flask, Gunicorn, Pytest
+│   └── Dockerfile           # Flask container image definition
 └── ops/
-└── Jenkinsfile # Pipeline (install deps, tests, build & push image)
+    └── Jenkinsfile          # Pipeline (install deps, tests, build & push image)
