@@ -47,7 +47,7 @@ Deliver a final demo, documentation, and presentation at Computing Showcase Day 
 
 ## 📂 Repo Structure  
 
-
+```text
 ├── README.md # Overview (this file)
 ├── Week01/ # Week 1 tasks, diagrams, docs
 ├── Week02/
