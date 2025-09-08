@@ -1,0 +1,60 @@
+
+---
+
+## 🧪 CI/CD Starters (Python/Flask)
+
+**`ops/Jenkinsfile` (starter)**  
+```groovy
+pipeline {
+    agent any
+    options { timestamps() }
+    triggers { pollSCM('@daily') } // replace with webhook later
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
+            }
+        }
+        stage('Unit Tests') {
+            steps {
+                sh '''
+                    . venv/bin/activate
+                    pytest --junitxml=test-results/results.xml || true
+                '''
+            }
+        }
+        stage('Build Docker Image') {
+            when { expression { return fileExists('Dockerfile') } }
+            steps {
+                sh '''
+                    echo "Building Docker image..."
+                    docker build -t <REGISTRY>/<APP_NAME>:${BUILD_NUMBER} .
+                '''
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                sh '''
+                    echo "Pushing Docker image..."
+                    docker push <REGISTRY>/<APP_NAME>:${BUILD_NUMBER}
+                '''
+            }
+        }
+    }
+    post {
+        always {
+            junit 'test-results/results.xml'
+            archiveArtifacts artifacts: '**/test-results/*.xml', allowEmptyArchive: true
+        }
+    }
+}
