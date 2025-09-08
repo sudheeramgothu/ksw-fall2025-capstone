@@ -44,6 +44,7 @@
 ---
 
 ## 📂 Suggested Repo Structure
+```text
 Week01/
 ├── README.md # Weekly plan (this file)
 ├── diagram.png # Draft CI/CD architecture diagram
