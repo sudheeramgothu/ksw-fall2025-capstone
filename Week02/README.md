@@ -12,7 +12,7 @@
    - Repo name suggestion: `flask-app`.
 
 2. **Repository Structure & Protections**
-   - Repos: `app` (Flask code), `infra` (K8s manifests/Helm), `ops` (pipelines/config).
+   - Repos: `app` (Flask code), `infra` (K8s manifests/Helm) (NOT RECOMMENDED FOR YOU GUYS), `ops` (pipelines/config).
    - Branch model: `feature/*` → `dev` → `main`.
    - **Protect `main`** (require PR, 1 reviewer, status checks).
 
