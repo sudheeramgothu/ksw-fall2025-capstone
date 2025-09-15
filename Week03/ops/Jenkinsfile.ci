@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+    options { timestamps() }
+    triggers { pollSCM('H/5 * * * *') } // every 5 mins (replace with webhook later)
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r app/requirements.txt
+                '''
+            }
+        }
+        stage('Run Unit Tests') {
+            steps {
+                sh '''
+                    . venv/bin/activate
+                    pytest app/test_app.py --junitxml=test-results/results.xml
+                '''
+            }
+        }
+    }
+    post {
+        always {
+            junit 'test-results/results.xml'
+            archiveArtifacts artifacts: 'test-results/*.xml', allowEmptyArchive: true
+        }
+    }
+}
