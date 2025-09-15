@@ -30,7 +30,7 @@
 
 ---
 ```text
-Required Plugins
+**Required Plugins**
 
 GitHub Integration
 
@@ -40,7 +40,7 @@ Docker Pipeline
 
 JUnit
 
-Global Tools
+**Global Tools**
 
 Git
 
@@ -50,20 +50,20 @@ Docker
 
 GitHub → Jenkins Integration
 
-Option 1: Webhook (preferred)
+**Option 1: Webhook (preferred)**
 
 Add webhook in GitHub repo: <JENKINS_URL>/github-webhook/
 
-Option 2: Poll SCM (temporary)
+**Option 2: Poll SCM (temporary)**
 
 Configure job to check repo every 5 mins (H/5 * * * *)
 
-Evidence to Capture
+** Evidence to Capture
 
 Jenkins job configuration screenshot
 
 Successful build log screenshot → save as Week03/jenkins-build-screenshot.png
-
+```
 
 ## 📦 Deliverables by End of Week 3
 - ✅ Jenkins server up and running.  
