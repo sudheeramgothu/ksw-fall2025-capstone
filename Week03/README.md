@@ -45,5 +45,5 @@ Week03/
 ├── README.md                     # Week 3 instructions
 ├── jenkins-setup.md              # Notes: install steps, plugins, config screenshots
 ├── jenkins-build-screenshot.png  # Evidence of successful build
-└── pipeline/
+└── ops/
     └── Jenkinsfile.ci            # CI-only pipeline (build + test stages)
