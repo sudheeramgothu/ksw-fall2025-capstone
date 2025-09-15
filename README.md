@@ -35,13 +35,119 @@ Deliver a final demo, documentation, and presentation at Computing Showcase Day 
 
 ## 📅 Timeline & Milestones  
 
-| **Milestone** | **Timeline** | **Focus** | **Key Deliverables** |
-|---------------|--------------|------------|----------------------|
-| **Milestone 1 – Presentation of Plan** | Weeks 1–3 | Repo setup, team roles, CI/CD architecture draft, project plan | GitHub repos, draft diagram, planning doc |
-| **Milestone 2 – Midpoint Progress Update** | Weeks 4–8 | Jenkins CI/CD, Docker builds, GitOps, security integration | Jenkinsfile, Docker images, GitOps pipeline, RBAC + Trivy |
-| **Milestone 3 – Final Presentation** | Weeks 9–11 | Advanced DevSecOps, monitoring setup, final documentation | Grafana dashboards, security artifacts, final report |
-| **C-Day (Computing Showcase Day)** | Week 12 | Final live demo & presentation | Pitch deck + demo recording |
-| **Final Review & Feedback** | Dec 10 | Submission of final deliverables & mentor review | Final repo, report, documentation |
+# 📅 Capstone Milestone Plan (KSW Fall 2025)
+
+## Milestone 1 – Presentation of Plan  
+🗓️ **Due: Sept 30 (Weeks 1–3)**  
+🎯 **Goal:** Show project planning, repo setup, architecture, and initial CI pipeline.  
+
+**Weeks Covered:**  
+- **Week 1 – Kickoff & Planning**  
+  - Team roles assigned  
+  - GitHub org/repos created  
+  - Draft architecture diagram (`diagram.png`)  
+  - Project plan doc committed  
+
+- **Week 2 – Application & Repo Setup (Flask)**  
+  - Flask app added with minimal test  
+  - Branch protections on `main`  
+  - CONTRIBUTING.md + PR templates  
+  - Starter Dockerfile + Jenkinsfile committed  
+  - Updated architecture diagram (`diagram-v1-1.png`)  
+
+- **Week 3 – Jenkins Setup & CI Basics**  
+  - Jenkins server installed & configured  
+  - Repo integrated with Jenkins (webhook or pollSCM)  
+  - CI pipeline runs build + unit tests  
+  - Test results archived in Jenkins  
+  - Screenshot of working build committed  
+
+**Deliverables for Milestone 1 (Sep 30):**  
+- GitHub repos & standards in place  
+- Project planning doc  
+- Architecture diagram (v1.1)  
+- Working Flask app with tests  
+- Jenkins CI pipeline running & producing reports  
+
+---
+
+## Milestone 2 – Midpoint Progress Update  
+🗓️ **Due: Oct 28 (Weeks 4–8)**  
+🎯 **Goal:** Show working CI/CD pipeline with containerization, GitOps, and security integration.  
+
+**Weeks Covered:**  
+- **Week 4 – Containerization**  
+  - Finalize Dockerfile for Flask app  
+  - Jenkins pipeline builds & pushes image to registry  
+  - Test image locally in Docker/Kubernetes  
+
+- **Week 5 – GitOps Setup (Part 1)**  
+  - Install ArgoCD or Flux on Kubernetes  
+  - Connect app manifests to GitHub repo  
+  - Auto-deploy on commit → cluster  
+
+- **Week 6 – GitOps Setup (Part 2)**  
+  - Add Helm charts or K8s manifests for configuration  
+  - Document GitOps workflow  
+  - Demo app auto-deployment  
+
+- **Week 7 – DevSecOps Integration (Part 1)**  
+  - Apply Kubernetes RBAC policies  
+  - Run vulnerability scans with Trivy  
+  - Add scanning stage to Jenkinsfile  
+
+- **Week 8 – DevSecOps Integration (Part 2)**  
+  - Refine RBAC roles  
+  - Add secrets management (e.g., K8s secrets, Vault optional)  
+
+**Deliverables for Milestone 2 (Oct 28):**  
+- Working CI/CD pipeline (build → image push → GitOps → cluster)  
+- Flask app running in Kubernetes  
+- RBAC & security scans integrated  
+- Architecture diagram updated to include GitOps + security  
+- Documentation updated (Week 4–8 progress)  
+
+---
+
+## Milestone 3 – Final Presentation  
+🗓️ **Due: Dec 2 (Weeks 9–11)**  
+🎯 **Goal:** Finalize monitoring/observability, polish documentation, and rehearse for C-Day.  
+
+**Weeks Covered:**  
+- **Week 9 – Monitoring Setup (Part 1)**  
+  - Install Prometheus + Grafana  
+  - Collect app + infra metrics  
+
+- **Week 10 – Monitoring Setup (Part 2)**  
+  - Build dashboards (pipeline health, error rates, latency, CPU/memory)  
+  - Save screenshots to repo  
+
+- **Week 11 – Documentation & Prep**  
+  - Finalize technical report (15–20 pages)  
+  - Refined architecture diagrams  
+  - Pitch deck + demo script  
+  - Dry run of presentation  
+
+**Deliverables for Milestone 3 (Dec 2):**  
+- Monitoring dashboards (Grafana screenshots)  
+- Documentation complete (report, diagrams, configs, troubleshooting)  
+- Final repo structure clean & organized  
+- Pitch deck ready  
+
+---
+
+## C-Day – Computing Showcase Day  
+🗓️ **Dec 4, 2025 (Week 12)**  
+- Students deliver **live demo + presentation**.  
+- Submit final deliverables to faculty.  
+
+---
+
+## Final Review & Submission  
+🗓️ **Dec 10, 2025**  
+- Final repo + documentation delivered.  
+- Mentor provides feedback.  
+
 
 ---
 
