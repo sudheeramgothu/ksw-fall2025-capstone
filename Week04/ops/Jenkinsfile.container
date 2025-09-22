@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+    environment {
+        REGISTRY = "docker.io/<your-dockerhub-username>"
+        APP_NAME = "ksw-flask-app"
+        IMAGE_TAG = "${env.BUILD_NUMBER}"
+    }
+    stages {
+        stage('Checkout') {
+            steps { checkout scm }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                  python3 -m venv venv
+                  . venv/bin/activate
+                  pip install --upgrade pip
+                  pip install -r app/requirements.txt
+                '''
+            }
+        }
+        stage('Run Unit Tests') {
+            steps {
+                sh '''
+                  . venv/bin/activate
+                  pytest app/test_app.py --junitxml=test-results/results.xml
+                '''
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                  echo "Building Docker image..."
+                  docker build -t $REGISTRY/$APP_NAME:$IMAGE_TAG ./app
+                '''
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh '''
+                      echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                      docker push $REGISTRY/$APP_NAME:$IMAGE_TAG
+                    '''
+                }
+            }
+        }
+    }
+    post {
+        always {
+            junit 'test-results/results.xml'
+            archiveArtifacts artifacts: 'test-results/*.xml', allowEmptyArchive: true
+        }
+    }
+}
