@@ -1,0 +1,6 @@
+apiVersion: v2
+name: flask-app
+description: Helm chart for KSW Flask app
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
