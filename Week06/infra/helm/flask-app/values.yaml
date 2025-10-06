@@ -1,0 +1,13 @@
+image:
+  repository: <REGISTRY>/<APP_NAME>
+  tag: "1"              # update via CI or manual PR (e.g., ${BUILD_NUMBER})
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: NodePort
+  port: 5000
+  nodePort: 30007
+
+resources: {}
