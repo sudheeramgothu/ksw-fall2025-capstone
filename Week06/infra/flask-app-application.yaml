@@ -1,0 +1,25 @@
+#ArgoCD Application (Helm Source)
+
+# If you used an ArgoCD Application in Week 5, switch its source to the Helm chart path:
+
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flask-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/<ORG>/ksw-fall2025-capstone.git
+    targetRevision: main
+    path: infra/helm/flask-app
+    helm:
+      valueFiles: 
+        - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
