@@ -23,3 +23,45 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
+=====================================================================================
+# Auto-deployment demo idea:
+
+Update values.yaml → image.tag: "2" (or bump replicaCount from 1 → 2).
+
+Commit → ArgoCD syncs → verify rollout with:
+
+kubectl rollout status deploy/flask-app
+kubectl get pods -l app=flask-app -o wide
+
+Optional: Kustomize Alternative
+
+infra/kustomize/base/deployment.yaml (same as Week 5 but kept generic)
+infra/kustomize/overlays/dev/kustomization.yaml
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+
+images:
+  - name: <REGISTRY>/<APP_NAME>
+    newTag: "2"
+
+
+Change newTag → commit → ArgoCD/Flux auto-sync → rollout.
+
+Week06/gitops-runbook.md (outline you can fill)
+
+Repos overview (app/infra/ops)
+
+Paths watched by ArgoCD/Flux
+
+How to: change image tag, adjust replicas, change Service type
+
+Promotion flow (dev → main)
+
+Rollback steps (Git revert or ArgoCD rollback)
+
+Common issues (sync errors, health checks, bad image tag) and fixes
+======================================================================
