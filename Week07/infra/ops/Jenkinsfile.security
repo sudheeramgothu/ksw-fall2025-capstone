@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    environment {
+        REGISTRY = "docker.io/<your-dockerhub-username>"
+        APP_NAME = "ksw-flask-app"
+        IMAGE_TAG = "${env.BUILD_NUMBER}"
+    }
+    stages {
+        stage('Checkout') {
+            steps { checkout scm }
+        }
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                  docker build -t $REGISTRY/$APP_NAME:$IMAGE_TAG ./app
+                '''
+            }
+        }
+        stage('Security Scan - Trivy') {
+            steps {
+                sh '''
+                  echo "Running Trivy scan..."
+                  docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+                    -v $PWD/Week07:/results aquasec/trivy:latest \
+                    image $REGISTRY/$APP_NAME:$IMAGE_TAG > Week07/trivy-report.txt || true
+                '''
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh '''
+                      echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                      docker push $REGISTRY/$APP_NAME:$IMAGE_TAG
+                    '''
+                }
+            }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'Week07/trivy-report.txt', allowEmptyArchive: true
+        }
+    }
+}
