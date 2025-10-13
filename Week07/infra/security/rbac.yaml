@@ -30,3 +30,19 @@ roleRef:
   kind: Role
   name: flask-app-role
   apiGroup: rbac.authorization.k8s.io
+
+---
+How to apply:
+
+kubectl apply -f infra/security/rbac.yaml
+kubectl get rolebinding -n default
+
+Example Trivy Scan Command:
+
+Run the scan locally or in Jenkins:
+
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image <REGISTRY>/<APP_NAME>:<TAG> > Week07/trivy-report.txt
+
+Output example:
+
+Total: 23 (UNKNOWN: 0, LOW: 10, MEDIUM: 8, HIGH: 4, CRITICAL: 1)
