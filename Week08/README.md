@@ -49,7 +49,7 @@
 
 ✅ Screenshot of secret usage or verification (Week08/k8s-secrets-screenshot.png).
 
-'''
+```text
 Week08/
 ├── README.md                        # Week 8 instructions
 ├── k8s-secrets-screenshot.png       # Screenshot showing secret creation or usage
@@ -58,4 +58,3 @@ Week08/
         ├── rbac.yaml                # Refined roles & bindings
         └── secrets.yaml             # K8s Secrets manifest (base64 encoded)
 
-'''
